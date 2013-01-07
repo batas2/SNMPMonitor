@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SectionsModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SectionsModelStoreContainer">
+          <EntitySet Name="Opinion" EntityType="SectionsModel.Store.Opinion" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="SectionsModel.Store.Test" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Opinion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="MasterAgentIp" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Hosts" Type="nvarchar" Nullable="false" MaxLength="512" />
+          <Property Name="Syndrom" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MasterAgentIP" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IPDest" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IPSrc" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="ControlUnitIP" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SectionsModel" Alias="Self"
+              xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+              xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SectionsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Test" EntityType="SectionsModel.Test" />
+          <EntitySet Name="Opinion" EntityType="SectionsModel.Opinion" />
+        </EntityContainer>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="MasterAgentIP" Nullable="false" MaxLength="100" FixedLength="false"
+                    Unicode="true" />
+          <Property Type="String" Name="IPDest" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IPSrc" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Number" Nullable="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="TestID" Nullable="false" />
+          <Property Type="String" Name="ControlUnitIP" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Opinion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="MasterAgentIp" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Hosts" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Syndrom" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SectionsModelStoreContainer"
+                                CdmEntityContainer="SectionsEntities">
+          <EntitySetMapping Name="Test">
+            <EntityTypeMapping TypeName="SectionsModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="ControlUnitIP" ColumnName="ControlUnitIP" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="IPSrc" ColumnName="IPSrc" />
+                <ScalarProperty Name="IPDest" ColumnName="IPDest" />
+                <ScalarProperty Name="MasterAgentIP" ColumnName="MasterAgentIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opinion">
+            <EntityTypeMapping TypeName="SectionsModel.Opinion">
+              <MappingFragment StoreEntitySet="Opinion">
+                <ScalarProperty Name="Syndrom" ColumnName="Syndrom" />
+                <ScalarProperty Name="Hosts" ColumnName="Hosts" />
+                <ScalarProperty Name="MasterAgentIp" ColumnName="MasterAgentIp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SectionsModel">
+        <EntityTypeShape EntityType="SectionsModel.Test" Width="1.5" PointX="0.75" PointY="0.75"
+                         Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="SectionsModel.Opinion" Width="1.5" PointX="3.375" PointY="0.75" Height="1.7879850260416674" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

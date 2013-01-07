@@ -1,0 +1,8 @@
+﻿<Window x:Class="ControlUnit.DeleteSectionForm" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Usuń Sekcję" Loaded="Window_Loaded" ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <ComboBox Name="Sections" MinWidth="150"></ComboBox>
+        <Button MinWidth="60" Click="Button_Click">Usuń</Button>
+    </StackPanel>
+</Window>

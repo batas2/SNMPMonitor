@@ -1,0 +1,118 @@
+﻿<Window x:Class="ControlUnit.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="SNMP Monitor" ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closing="Window_Closing">
+    <DockPanel LastChildFill="True">
+        <GroupBox DockPanel.Dock="Top" Name="ControlGroupBox">
+            <GroupBox.Header>Zarządzanie</GroupBox.Header>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Margin="10" MinWidth="130" Click="NewSectionBtn_Click">Dodaj Sekcje</Button>
+                <Button Margin="10" MinWidth="130" Click="DelSectionBtn_Click">Usuń Sekcje</Button>
+                <Button Margin="10" MinWidth="130" Click="Refresh_Click">Odśwież wyniki</Button>
+                <Button Margin="10" MinWidth="130" Click="Update_Click">Aktualizuj sekcje</Button>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel DockPanel.Dock="Bottom">
+            <StatusBar>
+                <StatusBarItem>
+                    <TextBlock x:Name="statusTextBox">
+                        Wczytano bazę danych...
+                    </TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+        </StackPanel>
+        <GroupBox>
+            <GroupBox.Header>Testy</GroupBox.Header>
+            <DataGrid Name="SectionGrid" MinHeight="300" MinWidth="400" AutoGenerateColumns="False"
+                      CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" IsEnabled="False">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Width="50" Binding="{Binding Path=TestId}" Header="Test ID" />
+                    <DataGridTextColumn Width="Auto" Binding="{Binding Path=IpSrc}" Header="IP Źródłowe" />
+                    <DataGridTextColumn Width="Auto" Binding="{Binding Path=IpDest}" Header="IP Docelowe" />
+                    <DataGridTextColumn Width="300" Binding="{Binding Path=Status}" Header="Status" />
+
+                </DataGrid.Columns>
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander IsExpanded="True">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Sekcja: " />
+                                                        <TextBlock Text="{Binding Path=Name}" />
+                                                        <TextBlock Text="; Testów: " />
+                                                        <TextBlock Text="{Binding Path=ItemCount}" />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+            </DataGrid>
+
+        </GroupBox>
+        <GroupBox>
+            <GroupBox.Header>Jednostki</GroupBox.Header>
+            <DataGrid Name="UnitGrid" MinHeight="300" MinWidth="400" AutoGenerateColumns="False" CanUserAddRows="False"
+                      CanUserDeleteRows="False" IsReadOnly="True" IsEnabled="{Binding ElementName=SectionGrid , Path=IsEnabled}">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Width="50" Binding="{Binding Path=TestId}" Header="ID" />
+                    <DataGridTextColumn Width="Auto" Binding="{Binding Path=IpDest}" Header="IP" />
+                    <DataGridTextColumn Width="300" Binding="{Binding Path=Status}" Header="Status" />
+
+                </DataGrid.Columns>
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander IsExpanded="True">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Sekcja: " />
+                                                        <TextBlock Text="{Binding Path=Name}" />
+                                                        <TextBlock Text="; Jednostek: " />
+                                                        <TextBlock Text="{Binding Path=ItemCount}" />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+            </DataGrid>
+
+        </GroupBox>
+    </DockPanel>
+
+</Window>
